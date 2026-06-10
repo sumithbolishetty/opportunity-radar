@@ -1,0 +1,21 @@
+export type Opportunity = {
+  id: string;
+  title: string;
+  description: string;
+  industry: string;
+  country: string;
+  demandScore: number;
+  competitionScore: number;
+  feasibilityScore: number;
+  revenueScore: number;
+  dateDetected: string;
+  problem: string;
+  whyItExists: string;
+  potentialUsers: string[];
+  competitors: string[];
+  revenueModel: string;
+  risks: string[];
+  aiInsights: string[];
+  marketSizeEstimate: string;
+  growthForecast: string;
+};
