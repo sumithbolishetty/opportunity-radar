@@ -12,13 +12,17 @@ import {
   YAxis
 } from "recharts";
 import { growthData, industryData } from "@/services/mockData";
+import { useI18n } from "@/lib/i18n";
 
 export function GrowthChart() {
+  const { monthName, t } = useI18n();
+  const translatedGrowthData = growthData.map((item) => ({ ...item, month: monthName(item.month) }));
+
   return (
     <div className="glass h-80 rounded-lg p-5">
-      <h3 className="text-lg font-semibold">Opportunity Growth</h3>
+      <h3 className="text-lg font-semibold">{t("charts.growth")}</h3>
       <ResponsiveContainer height="85%" width="100%">
-        <AreaChart data={growthData}>
+        <AreaChart data={translatedGrowthData}>
           <defs>
             <linearGradient id="growth" x1="0" x2="0" y1="0" y2="1">
               <stop offset="5%" stopColor="#6366F1" stopOpacity={0.75} />
@@ -37,11 +41,14 @@ export function GrowthChart() {
 }
 
 export function IndustryChart() {
+  const { industryName, t } = useI18n();
+  const translatedIndustryData = industryData.map((item) => ({ ...item, name: industryName(item.name) }));
+
   return (
     <div className="glass h-80 rounded-lg p-5">
-      <h3 className="text-lg font-semibold">Industry Demand</h3>
+      <h3 className="text-lg font-semibold">{t("charts.industry")}</h3>
       <ResponsiveContainer height="85%" width="100%">
-        <BarChart data={industryData}>
+        <BarChart data={translatedIndustryData}>
           <CartesianGrid stroke="rgba(255,255,255,0.08)" vertical={false} />
           <XAxis dataKey="name" stroke="#94A3B8" />
           <YAxis stroke="#94A3B8" />
